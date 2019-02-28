@@ -9,12 +9,15 @@
         "doctrine/doctrine-cache-bundle": "^1.3",
         "doctrine/doctrine-migrations-bundle": "^2.0",
         "doctrine/orm": "^2.6",
+        "psr/log": "^1.1",
+        "sensio/framework-extra-bundle": "^5.2",
         "symfony/console": "*",
         "symfony/debug-bundle": "*",
         "symfony/flex": "^1.1",
         "symfony/framework-bundle": "*",
         "symfony/maker-bundle": "^1.11",
         "symfony/monolog-bundle": "^3.3",
+        "symfony/profiler-pack": "^1.0",
         "symfony/security-bundle": "*",
         "symfony/swiftmailer-bundle": "^3.2",
         "symfony/twig-bundle": "*",
@@ -28,7 +31,10 @@
         "preferred-install": {
             "*": "dist"
         },
-        "sort-packages": true
+        "sort-packages": true,
+        "platform": {
+            "php": "7.2"
+        }
     },
     "autoload": {
         "psr-4": {
