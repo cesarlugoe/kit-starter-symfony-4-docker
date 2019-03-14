@@ -6,16 +6,24 @@ use Psr\Log\LoggerInterface;
 
 class Greeting {
 
+   /**
+    * @var LoggerInterface
+    */
    private $logger;
+   /**
+    * @var string
+    */
+    private $message;
 
-   public function __construct(LoggerInterface $logger) {
+   public function __construct(LoggerInterface $logger, string $message) {
       $this->logger = $logger;
+      $this->message = $message;
+
    }
    
    public function greet(string $name): string {
-      $message = "Greeted $name";
-      $this->logger->info($message);
-      return "Hello $name";
+      $this->logger->info("Greeted $name");
+      return "{$this->message} $name";
    }
 
 }

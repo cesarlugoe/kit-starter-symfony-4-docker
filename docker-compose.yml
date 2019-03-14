@@ -44,6 +44,7 @@ services:
             - 8080:80
         links:
             - mysql
+            ## usr: root pass: root
 
     maildev:
         image: djfarrelly/maildev
