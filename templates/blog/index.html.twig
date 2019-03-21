@@ -5,7 +5,9 @@
 {% block body %}
    {% for id, post in posts %}
       <p><a href="{{ path('blog_show', {'id': id}) }}"> ID: {{ id }} </a></p>
-      <h3>{{ post.title }}</h3>
+      <h3>{{ post.title|upper }}</h3>
       <p>{{ post.text }}</p>
+      <p>{{ post.date|date('H:i:s') }}</p>
+      <button><a href="{{ path('blog_delete', { 'id': id }) }}"> Delete </a></button>
    {% endfor %}
 {% endblock %}

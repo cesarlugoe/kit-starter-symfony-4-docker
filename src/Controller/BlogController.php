@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -53,10 +54,11 @@ class BlogController {
     * @Route ("/add", name="blog_add")
     */ 
    public function add() {
-      $posts = $this->sessions->get('posts');
+      $posts = $this->session->get('posts');
       $posts[uniqid()] = [
          'title' => "A random title".rand(1, 500),
          'text' => 'Some random text nr'.rand(1,500),
+         'date' => new \DateTime(),
       ];
       $this->session->set('posts', $posts);
       return new RedirectResponse($this->router->generate('blog_index'));
@@ -74,10 +76,23 @@ class BlogController {
       $html = $this->twig->render(
          'blog/post.html.twig', [
             'id' => $id, 
-            'post' => $post[$id],
+            'post' => $posts[$id],
          ]
       );
       return new Response($html);
    }
 
+    /**
+    * @Route ("/delete/{id}", name="blog_delete")
+    */ 
+   public function delete($id) {
+      $posts = $this->session->get('posts');
+      if (!$posts || !isset($posts[$id])) {
+         throw new NotFoundHttpException('Post not found');
+      }
+      unset($posts[$id]);
+      $this->session->set('posts', $posts);
+      return new RedirectResponse($this->router->generate('blog_index'));
+   }
 }
+
