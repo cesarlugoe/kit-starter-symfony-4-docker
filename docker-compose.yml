@@ -12,7 +12,7 @@ services:
           - php
 
     mysql:
-        image: mysql
+        image: mysql:8.0.15
         command: "--default-authentication-plugin=mysql_native_password"
         container_name: sf4_mysql
         volumes:
@@ -20,9 +20,10 @@ services:
         environment:
             MYSQL_ROOT_PASSWORD: root
             MYSQL_DATABASE: sf4
-            MYSQL_USER: sf4
-            MYSQL_PASSWORD: sf4
-
+            MYSQL_USER: root
+            MYSQL_PASSWORD: root
+           ## usr: root pass: root
+       
     php:
         build: .docker/php
         container_name: sf4_php
@@ -30,6 +31,7 @@ services:
           - .:/home/wwwroot/sf4
         environment:
           - maildev_host=sf4_maildev
+          
         depends_on:
           - maildev
           - mysql
@@ -44,7 +46,7 @@ services:
             - 8080:80
         links:
             - mysql
-            ## usr: root pass: root
+           
 
     maildev:
         image: djfarrelly/maildev
