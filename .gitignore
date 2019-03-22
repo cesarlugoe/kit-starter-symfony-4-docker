@@ -9,3 +9,8 @@
 .idea
 .docker/data/
 ###< romaricp ###
+
+###dependencies###
+/node_modules
+/.pnp
+.pnp.js
