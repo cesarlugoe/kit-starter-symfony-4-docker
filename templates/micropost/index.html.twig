@@ -6,13 +6,13 @@
 
    <h6 class="border-bottom border-gray pb-2 mb-0">Recent updates</h6>
    {% for post in posts %}
-      <div class="media text-muted pt-3">
-         <img data-src="" alt="" class="mr-2 rounded">
-         <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-            <span class="d-block">
-                  <strong class="text-gray-dark">@username</strong><small>.  {{ post.time|date("d/m/Y") }}</small>
-                  {{ post. text }}
-         </p>
-      </div>
+      <a href="{{ path('micro_post_post', {'id': post.id }) }}">
+         {{ include("micropost/post.html.twig", { "post": post }) }}
+      </a>
+      <small class="d-block text-right mt-3">
+         <a href="{{ path('micro_post_edit', {'id' : post.id}) }}">Edit</a>
+         <a href="{{ path('micro_post_delete', {'id' : post.id}) }}">Delete</a>
+      </small>
+
    {% endfor %}
 {% endblock %}

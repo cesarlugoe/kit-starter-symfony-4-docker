@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+   <div class="media text-muted pt-3">
+      <img data-src="" alt="" class="mr-2 rounded">
+      <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+         <span class="d-block">
+               <strong class="text-gray-dark">@username</strong>
+               <small>.  {{ post.time|date("d/m/Y") }}</small>
+         </span>
+         {{ post. text }}
+      </p>
+   </div>
+{% endblock %}
